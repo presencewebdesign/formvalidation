@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
-    "material-ui": "^0.19.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.11",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "validator": "^8.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,5 +17,9 @@
     "eject": "react-scripts eject",
     "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
     "heroku-postbuild": "echo This runs afterwards."
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-marmalade": "^2.2.0"
   }
 }
