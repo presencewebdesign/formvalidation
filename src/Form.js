@@ -15,8 +15,7 @@ export default class Form extends Component {
                 email: '',
                 number: '',
                 termsConditions: 'no',
-                options: '',
-
+                options: 'Please select',
             },
             errors: {
                 firstname: false,
@@ -30,7 +29,7 @@ export default class Form extends Component {
                 surname: 'Please enter your surname',
                 email: 'Please validate your email',
                 number: 'Please validate your mobile number',
-                options: 'Please select a day',
+                options: 'Please select an option',
             },
         };
         this.validate = this.validate.bind(this);
@@ -48,17 +47,17 @@ export default class Form extends Component {
         });
     }
     validate(e) {
-        // const value = e.target.value;
+        const value = e.target.value;
         const name = e.target.name;
 
-        console.log(name);
+        console.log(value);
 
         switch (name) {
         case 'firstname':
             this.setState({
                 errors: {
                     ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
-                    [name]: !validator.isAlpha(this.state.values.firstname, 'en-GB'), // use [] to use a dynamic (variable) key
+                    [name]: !validator.isAlpha(this.state.values.firstname), // use [] to use a dynamic (variable) key
                 },
             });
             break;
@@ -66,7 +65,7 @@ export default class Form extends Component {
             this.setState({
                 errors: {
                     ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
-                    [name]: !validator.isAlpha(this.state.values.surname, 'en-GB'), // use [] to use a dynamic (variable) key
+                    [name]: !validator.isAlpha(this.state.values.surname), // use [] to use a dynamic (variable) key
                 },
             });
             break;
@@ -90,7 +89,7 @@ export default class Form extends Component {
             this.setState({
                 errors: {
                     ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
-                    [name]: !validator.isAlpha(this.state.values.options, 'en-GB'), // use [] to use a dynamic (variable) key
+                    [name]: validator.equals(this.state.values.options, 'Please select'), // use [] to use a dynamic (variable) key
                 },
             });
             break;
@@ -140,11 +139,11 @@ export default class Form extends Component {
                 />
                 <Select
                     name="options"
-                    value={this.state.values.options}
                     label="Select Options"
                     options={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', '123']}
                     state={this.state}
                     control={this.control}
+                    validate={this.validate}
                 />
             </div>
         );

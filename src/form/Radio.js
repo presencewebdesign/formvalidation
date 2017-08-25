@@ -7,7 +7,7 @@ const Radio = props => (
         {props.options.map(option => (
             <div className="left" key={option}>
                 <label htmlFor={props.name}>{option}</label>
-                <input type="radio" checked={props.state.values[props.name] === option} name={props.name} onChange={props.control} />
+                <input type="radio" checked={props.state.values[props.name] === option} name={props.name} value={option} onChange={props.control} />
             </div>
         ))}
     </div>
