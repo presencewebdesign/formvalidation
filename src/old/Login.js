@@ -13,6 +13,12 @@ class Login extends Component {
         };
         this.validate = this.validate.bind(this);
     }
+
+    handleClick(event) {
+        alert('values');
+    }
+
+
     validate(e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -26,6 +32,8 @@ class Login extends Component {
             });
         }
     }
+
+
     render() {
         const style = {
             margin: 15,
