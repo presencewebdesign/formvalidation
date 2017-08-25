@@ -4,6 +4,7 @@
 }
 .Form div{
     display: block;
+    border: solid 1px red;
 }
 input, select{
     padding: 5px;
