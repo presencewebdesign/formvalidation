@@ -4,7 +4,7 @@ import { string, shape, objectOf, bool, func } from 'prop-types';
 const Input = props => (
     <div>
         <div>
-            <label htmlFor={props.name}>{props.name}</label>
+            <label htmlFor={props.name}>{props.label ? props.label : props.name}</label>
         </div>
         <input
             name={props.name}
@@ -20,6 +20,7 @@ const Input = props => (
 Input.propTypes = {
     name: string.isRequired,
     type: string.isRequired,
+    label: string,
     state: shape({
         values: objectOf(string),
         errors: objectOf(bool),
@@ -27,6 +28,9 @@ Input.propTypes = {
     }).isRequired,
     control: func.isRequired,
     validate: func.isRequired,
+};
+Input.defaultProps = {
+    label: undefined,
 };
 
 export default Input;

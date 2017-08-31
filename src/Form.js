@@ -4,6 +4,7 @@ import validator from 'validator';
 import Input from './form/Input';
 import Radio from './form/Radio';
 import Select from './form/Select';
+import Extrafields from './form/Extrafields';
 
 export default class Form extends Component {
     constructor(props) {
@@ -12,14 +13,18 @@ export default class Form extends Component {
             values: {
                 firstname: '',
                 surname: '',
+                parentfirstname: '',
+                parentsurname: '',
                 email: '',
                 number: '',
                 termsConditions: 'no',
-                options: 'Please select',
+                options: '',
             },
             errors: {
                 firstname: false,
                 surname: false,
+                parentfirstname: false,
+                parentsurname: false,
                 email: false,
                 number: false,
                 options: false,
@@ -27,6 +32,8 @@ export default class Form extends Component {
             errorMessages: {
                 firstname: 'Please enter your first name',
                 surname: 'Please enter your surname',
+                parentfirstname: 'Please enter your parents first name',
+                parentsurname: 'Please enter your parents surname',
                 email: 'Please validate your email',
                 number: 'Please validate your mobile number',
                 options: 'Please select an option',
@@ -47,11 +54,8 @@ export default class Form extends Component {
         });
     }
     validate(e) {
-        const value = e.target.value;
+        // const value = e.target.value;
         const name = e.target.name;
-
-        console.log(value);
-
         switch (name) {
         case 'firstname':
             this.setState({
@@ -66,6 +70,22 @@ export default class Form extends Component {
                 errors: {
                     ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
                     [name]: !validator.isAlpha(this.state.values.surname), // use [] to use a dynamic (variable) key
+                },
+            });
+            break;
+        case 'parentfirstname':
+            this.setState({
+                errors: {
+                    ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
+                    [name]: !validator.isAlpha(this.state.values.parentfirstname), // use [] to use a dynamic (variable) key
+                },
+            });
+            break;
+        case 'parentsurname':
+            this.setState({
+                errors: {
+                    ...this.state.errors, // this takes all thats inside of this.state.values and puts it here - below you add the new data.
+                    [name]: !validator.isAlpha(this.state.values.parentsurname), // use [] to use a dynamic (variable) key
                 },
             });
             break;
@@ -105,6 +125,7 @@ export default class Form extends Component {
                 <Input
                     name="firstname"
                     type="text"
+                    label="First name"
                     state={this.state}
                     control={this.control}
                     validate={this.validate}
@@ -132,15 +153,24 @@ export default class Form extends Component {
                 />
                 <Radio
                     name="termsConditions"
-                    label="Terms & Conditions"
+                    label="Terms &amp; Conditions"
                     state={this.state}
                     options={['yes', 'no']}
                     control={this.control}
+                    validate={this.validate}
                 />
+                { this.state.values.termsConditions === 'yes' ?
+                    <Extrafields
+                        state={this.state}
+                        control={this.control}
+                        validate={this.validate}
+                    />
+                    : null
+                }
                 <Select
                     name="options"
                     label="Select Options"
-                    options={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', '123']}
+                    options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
                     state={this.state}
                     control={this.control}
                     validate={this.validate}
