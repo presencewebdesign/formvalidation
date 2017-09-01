@@ -1,22 +1,21 @@
 import React from 'react';
 import { string, shape, objectOf, bool, func } from 'prop-types';
+import TextField from 'material-ui/TextField';
 
 const Input = props => (
     <div>
-        <div>
-            <label htmlFor={props.name}>{props.label ? props.label : props.name}</label>
-        </div>
-        <input
+        <TextField
             name={props.name}
-            value={props.state.values[props.name]}
             onChange={props.control}
             onKeyUp={props.validate}
             type={props.type}
             className={props.state.errors[props.name] ? 'invalid' : ''}
+            floatingLabelText={props.label ? props.label : props.name}
         />
         {props.state.errors[props.name] ? <p style={{ color: 'red' }}>{props.state.errorMessages[props.name]}</p> : null}
     </div>
 );
+
 Input.propTypes = {
     name: string.isRequired,
     type: string.isRequired,

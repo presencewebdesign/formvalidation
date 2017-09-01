@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import validator from 'validator';
-
+import {AppBar, Tabs, Tab} from 'material-ui';
+// My components
 import Input from './form/Input';
 import Radio from './form/Radio';
-import Select from './form/Select';
 import Extrafields from './form/Extrafields';
 
 export default class Form extends Component {
@@ -118,63 +118,64 @@ export default class Form extends Component {
     }
     render() {
         return (
-            <div className="Form">
-                {<pre>
-                    {JSON.stringify(this.state, null, 4)}
-                </pre>}
-                <Input
-                    name="firstname"
-                    type="text"
-                    label="First name"
-                    state={this.state}
-                    control={this.control}
-                    validate={this.validate}
-                />
-                <Input
-                    name="surname"
-                    type="text"
-                    state={this.state}
-                    control={this.control}
-                    validate={this.validate}
-                />
-                <Input
-                    name="email"
-                    type="text"
-                    state={this.state}
-                    control={this.control}
-                    validate={this.validate}
-                />
-                <Input
-                    name="number"
-                    type="text"
-                    state={this.state}
-                    control={this.control}
-                    validate={this.validate}
-                />
-                <Radio
-                    name="termsConditions"
-                    label="Terms &amp; Conditions"
-                    state={this.state}
-                    options={['yes', 'no']}
-                    control={this.control}
-                    validate={this.validate}
-                />
-                { this.state.values.termsConditions === 'yes' ?
-                    <Extrafields
+            <div className="content">
+                <AppBar title="My App">
+                    <Tabs>
+                        <Tab label="&nbsp;Item 1&nbsp;" />
+                        <Tab label="&nbsp;Item 2&nbsp;" />
+                        <Tab label="&nbsp;Item 3&nbsp;" />
+                        <Tab label="&nbsp;Item 4&nbsp;" />
+                    </Tabs>
+                </AppBar>
+                <div>
+                    <Input
+                        name="firstname"
+                        type="text"
+                        label="First name"
                         state={this.state}
                         control={this.control}
                         validate={this.validate}
                     />
-                    : null
-                }
-                <Select
-                    name="options"
-                    label="Select Options"
-                    options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']}
-                    state={this.state}
-                    control={this.control}
-                    validate={this.validate}
-                />
+                    <Input
+                        name="surname"
+                        type="text"
+                        state={this.state}
+                        control={this.control}
+                        validate={this.validate}
+                    />
+                    <Input
+                        name="email"
+                        type="text"
+                        state={this.state}
+                        control={this.control}
+                        validate={this.validate}
+                    />
+                    <Input
+                        name="number"
+                        type="text"
+                        label="hello"
+                        state={this.state}
+                        control={this.control}
+                        validate={this.validate}
+                    />
+                    <Radio
+                        name="termsConditions"
+                        label="Terms &amp; Conditions"
+                        state={this.state}
+                        options={['yes', 'no']}
+                        control={this.control}
+                        validate={this.validate}
+                    />
+                    { this.state.values.termsConditions === 'yes' ?
+                        <Extrafields
+                            state={this.state}
+                            control={this.control}
+                            validate={this.validate}
+                        />
+                        : null
+                    }
+
+                </div>
             </div>
         );
     }
